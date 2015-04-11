@@ -1,0 +1,25 @@
+{
+	"name": "Wizer",
+	"version": "0.0.1",
+	"description": "A remote WiFi analyzation system",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "4.12.x",
+		"cfenv": "1.0.x",
+		"express": "~4.5.1",
+		"mongoose": "~3.8.0",
+		"body-parser": "~1.4.2",
+		"method-override": "~2.0.2",
+		"bcrypt": "latest",
+		"cookie-parser": "latest",
+		"express-session": "latest",
+		"grunt-nodemon": "latest",
+		"grunt-contrib-sass": "latest",
+		"grunt-shell-spawn": "latest",
+		"passport": "latest",
+		"passport-local": "latest"
+	},
+	"repository": {}
+}

@@ -1,0 +1,26 @@
+$default-color: #0091EA;
+$label-color: #424242;
+
+//Global for all pages
+
+.w-button {
+	width: 100%; 
+	background-color: $default-color !important;
+	color: #FFF !important;
+}
+
+.w-title {
+	padding-bottom: 5px;
+	font-size: 20px;
+	color: $label-color;
+}
+
+.w-text {
+	background-image: linear-gradient($default-color, $default-color), linear-gradient(#d2d2d2, #d2d2d2) !important;
+}
+
+// For the main page
+
+body {
+	background-image: url(../images/bkg.png);
+}

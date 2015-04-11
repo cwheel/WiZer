@@ -1,0 +1,23 @@
+{
+  "name": "Wizer",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "latest",
+    "modernizr": "latest",
+    "font-awesome": "latest",
+    "jquery" : "latest",
+    "angular" : "1.3.x",
+    "angular-route" : "1.3.x",
+    "angular-animate" : "1.3.x",
+    "ng-bootstrap-material" : "latest",
+    "angular-chart.js" : "latest",
+    "rdash-ui" : "latest",
+    "angular-bootstrap" : "latest",
+    "angular-cookies": "latest",
+    "spinkit" : "latest",
+    "angular-touch" : "latest",
+    "angular-chart.js" : "latest",
+    "pace" : "latest"
+  },
+  "private": true
+}
