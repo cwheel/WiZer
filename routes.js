@@ -89,14 +89,14 @@ module.exports = function(app,io) {
 						for (net in nets) {
 							if (net.SSID == alert.SSID) {
 								if (alert.trigger == "0") {
-
+									Alert.update({_id : alert._id},{$set:{'triggered':true}});
 								} else if (alert.trigger == "1") {
 									if (Math.abs(parseInt(net.signal)) < Math.abs(parseInt(alert.gain))) {
-
+										Alert.update({_id : alert._id},{$set:{'triggered':true}});
 									}
 								} else if (alert.trigger == "2") {
 									if (Math.abs(parseInt(net.signal)) > Math.abs(parseInt(alert.gain))) {
-										
+										Alert.update({_id : alert._id},{$set:{'triggered':true}});
 									}
 								}
 							}
