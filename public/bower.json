@@ -17,7 +17,9 @@
     "spinkit" : "latest",
     "angular-touch" : "latest",
     "angular-chart.js" : "latest",
-    "pace" : "latest"
+    "pace" : "latest",
+    "angular-socket-io" : "latest",
+    "socket.io-client" : "latest"
   },
   "private": true
 }
