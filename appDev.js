@@ -18,14 +18,12 @@ RecentReport.remove({}, function (err) {})
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+/* Add a test user to Mongo
 
-/*
-var User = require('./models/device');
+var User = require('./models/user');
 var bcrypt = require('bcrypt');
-var test1 = new User({key: "10af6925f0f94b400ddb3183569d958532232e2732de0a5bb4cc64de1e62", name : "WiZer-n1 (Edison)"});
-var test2 = new User({key: "ed054f15f0c6482eb8eb673fac9b17b91972f5d95b176c1f811419f36107", name : "WiZer-n2 (Rasberry Pi)"});
-test1.save();
-test2.save();
+var test = new  User({username: "test", password : bcrypt.hashSync("test", 10), name  : "Test User", email : "cameron@scelos.com"});
+test.save();
 */
 
 app.use(cookieParser());
