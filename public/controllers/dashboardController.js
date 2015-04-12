@@ -89,6 +89,10 @@ wizer.controller('alertController', function ($scope, $modalInstance, $modal, $h
 	$scope.add = {SSID : "", trigger : "0", gain : ""};
 
   	$scope.ok = function () {
+  		if ($scope.add.gain == "") {
+  			$scope.add.gain = "Any";
+  		}
+  		
   		$http({
   		 	method  : 'POST',
   			url     : '/alert/register',

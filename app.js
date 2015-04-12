@@ -12,26 +12,16 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var RecentReport = require('./models/recentreport');
 
-var options = {
-  user: '4d980289-5340-4dd1-9837-895cbed44ac8',
-  pass: 'd3855fae-8af4-4165-b156-ac51582026cf'
-}
+var Alert = require('./models/alert');
 
-mongoose.connect('mongodb://192.155.243.54/wizen', options);
+mongoose.connect("mongodb://4d980289-5340-4dd1-9837-895cbed44ac8:d3855fae-8af4-4165-b156-ac51582026cf@192.155.243.54:10035/db");
 RecentReport.remove({}, function (err) {})
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-/* Add a test user to Mongo
-
-var User = require('./models/user');
-var bcrypt = require('bcrypt');
-var test = new  User({username: "test", password : bcrypt.hashSync("test", 10), name  : "Test User"});
-test.save();
-*/
+Alert.remove({}, function (err) {});
 
 app.use(cookieParser());
 app.use(session({
