@@ -9,5 +9,6 @@ module.exports = mongoose.model('Report', {
     encrypted : {type : String, default: 'false'},
     cypher : {type : String, default: 'Unknown'},
     time : {type : String, default: 'Unknown'},
+    device : {type : String, default: ''},
     channel : {type : String, default: '0'}
 });
