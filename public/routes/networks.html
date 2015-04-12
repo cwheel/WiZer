@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<div class="panel panel-material-purple" edgeless-panel>
+		<div class="panel panel-material-indigo" edgeless-panel>
 			<div class="panel-heading">Observable Networks</div>
 			<div class="panel-body">
 				<table class="table table-hover table-condensed">
@@ -8,15 +8,18 @@
 				      <tr>
 				        <th>SSID</th>
 				        <th>BSSID</th>
-				        <th>GHz</th>
+				        <th>Gain</th>
 				        <th>Channel</th>
+				        <th>Cipher</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr ng-repeat="">
-				        <td>John</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
+				      <tr ng-repeat="network in allNetworks" style="font-size: 10px">
+				        <td>{{ network.SSID }}</td>
+				        <td>{{ network.BSSID }}</td>
+				        <td>{{ network.signal }}</td>
+				        <td>{{ network.channel }}</td>
+				        <td>{{ network.cypher }}</td>
 				      </tr>
 				    </tbody>
 				  </table>

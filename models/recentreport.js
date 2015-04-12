@@ -7,5 +7,6 @@ module.exports = mongoose.model('RecentReport', {
     quality : {type : String, default: '0'},
     signal : {type : String, default: '0'},
     encrypted : {type : String, default: 'false'},
-    cypher : {type : String, default: 'Unknown'},
+    cypher : {type : String, default: ''},
+    channel : {type : String, default: '0'}
 });

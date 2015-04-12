@@ -1,9 +1,11 @@
 var Passport = require('passport');
 var Report = require('./models/report');
-var Report = require('./models/recentreport');
+var RecentReport = require('./models/recentreport');
 var Device = require('./models/device');
 
-module.exports = function(app) {
+module.exports = function(app,io) {
+	var recentReports = 0;
+
 	function requireAuth(req, res, next) {
 		if (req.isAuthenticated()) {
 	    	return next();
@@ -48,33 +50,41 @@ module.exports = function(app) {
 
 	//Handle incoming node data
 	app.post('/node/report', function(req, res) {
-		var nets = JSON.parse(req.body.networks);
+		Device.findOne({ key : req.body.key }, function (err, device) {
+		    if (device == null) {
+		    	console.log("Unautherized device with key: " + req.body.key + " was denied");
+				res.send({ reportStatus: 'denied' });
+		    } else {
+		    	var nets = JSON.parse(req.body.networks);
 
-		RecentReport.remove({}, function (err) {});	
+		    	Device.count({}, function(err, count) {
+		    	    if (recentReports == count) {
+		    	    	console.log("Removing recent reports");
+		    	    	recentReports = 0;
+		    	    	RecentReport.remove({}, function (err) {});
+		    	   	}
 
-		for (var i = 0; i < nets.length; i++) {
-			var newReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, time : nets[i].time, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
-			newReport.save();
+		    	   	recentReports++;
 
-			var newrReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
-			newrReport.save();
-		}
+		    	   	for (var i = 0; i < nets.length; i++) {
+		    	   		var newReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, time : nets[i].time, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
+		    	   		newReport.save();
 
-		console.log("Recieved a network report from node: " + req.body.nodeName + " with " + nets.length + " networks!");
+		    	   		var newrReport = new RecentReport({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
+		    	   		newrReport.save();
+		    	   	}
 
-		res.send({ reportStatus: 'accepted' });
-		/*if (keyIsValid(req.body.key)) {
-			
-
-			res.send({ reportStatus: 'accepted' });
-		} else {
-			res.send({ reportStatus: 'denied' });	
-		}*/
+		    	   	console.log("Recieved a network report from node: " + device.name + " with " + nets.length + " networks!");
+		    	   	
+		    	   	res.send({ reportStatus: 'accepted' });
+		    	});
+		    }
+		});
 	});
 
 	//Show all recent reports
 	app.get('/node/recentReports', requireAuth, function(req, res) {
-		RecentReports.find({}, function(err, reports) {
+		RecentReport.find({}, function(err, reports) {
 			var allReports = [];
 
 			reports.forEach(function(report) {
@@ -99,21 +109,6 @@ module.exports = function(app) {
 			res.send({ reportStatus: 'accepted' });
 		});		
 	});
-
-	//Ensure that the key from the device is valid
-	function keyIsValid(deviceKey) {
-		if (deviceKey == null) {
-			return false;
-		}
-
-		Device.findOne({ key : deviceKey }, function (err, device) {
-		    if (!device) {
-		    	return false;
-		    } else {
-		    	return true;
-		    }
-		});
-	}
 
 	app.get('*', function(req, res){
 		res.redirect('/');
