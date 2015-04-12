@@ -14,12 +14,12 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-/* Add a test user to Mongo
+
 var User = require('./models/user');
 var bcrypt = require('bcrypt');
 var test = new  User({username: "test", password : bcrypt.hashSync("test", 10), name  : "Test User"});
 test.save();
-*/
+
 
 app.use(cookieParser());
 app.use(session({
