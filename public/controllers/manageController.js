@@ -26,9 +26,14 @@ wizer.controller('manageController',['$scope', '$location', '$timeout', '$rootSc
   	.success(function(resp) {
   		$scope.key = angular.fromJson(resp).key;
   		var modalInstance = $modal.open({
-  		  templateUrl: 'myModalContent.html',
-  		  controller: 'ModalInstanceCtrl',
-  		  size: size
+  		  templateUrl: 'myModal2Content.html',
+  		  controller: 'Modal2InstanceCtrl',
+  		  size: size,
+  		  resolve: {
+  		    red: function () {
+  		      return $scope.key;
+  		    }
+  		  }
   		});
 
   		modalInstance.result.then(function (newNode) {
@@ -40,7 +45,7 @@ wizer.controller('manageController',['$scope', '$location', '$timeout', '$rootSc
   };
 }]);
 
-wizer.controller('ModalInstanceCtrl', function ($scope, $modalInstance, red, $http) {
+wizer.controller('Modal2InstanceCtrl', function ($scope, $modalInstance, red, $http) {
 
   $scope.key = red;
 
