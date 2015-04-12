@@ -62,15 +62,15 @@
 					<thead>
 					    <tr>
 					        <th style="cursor: pointer;" ng-click="predicate = 'SSID'; reverse=!reverse">SSID <span style="font-size:12px">▼</span></th>
-					        <th>Trigger</th>
-					        <th style="cursor: pointer;" ng-click="predicate = 'signal'; reverse=!reverse">Gain <span style="font-size:12px">▼</span></th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'trigger'; reverse=!reverse">Trigger</th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'gain'; reverse=!reverse">Gain <span style="font-size:12px">▼</span></th>
 					      </tr>
 					    </thead>
 					    <tbody>
 					      <tr ng-repeat="network in alerts | filter:search | filter:freq | orderBy:predicate:reverse" style="font-size: 10px">
 					        <td>{{ network.SSID }}</td>
-					        <td>{{ network.BSSID }}</td>
-					        <td>{{ network.signal }}</td>
+					        <td>{{ network.trigger }}</td>
+					        <td>{{ network.gain }}</td>
 					    </tr>
 					</tbody>
 				</table>

@@ -13,6 +13,16 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 	 })
   	.success(function(resp) {
   		$scope.alerts = angular.fromJson(resp);
+
+  		for (var i = 0; i < $scope.alerts.length; i++) {
+  			if ($scope.alerts[i].trigger == "0") {
+  				$scope.alerts[i].trigger = "SSID Appear";
+  			} else if ($scope.alerts[i].trigger == "1") {
+  				$scope.alerts[i].trigger = "Greater Gain";
+  			} else if ($scope.alerts[i].trigger == "2") {
+  				$scope.alerts[i].trigger = "Lesser Gain";
+  			}
+  		}
   	})
 
 	$scope.add = function(size) {
