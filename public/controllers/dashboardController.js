@@ -52,6 +52,8 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 			if (angular.fromJson(resp).length != 0) {
 				$scope.allNetworks = angular.fromJson(resp);
 
+				$scope.allNetworks[0].signal = String(Math.abs(parseInt($scope.allNetworks[0].signal)) * -1);
+
 				$scope.gainLow = $scope.allNetworks[0].signal;
 				$scope.gainHigh = $scope.allNetworks[0].signal;
 				$scope.nets = $scope.allNetworks.length;
@@ -65,7 +67,7 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 				});
 
 				for (var i = 0; i < $scope.allNetworks.length; i++) {
-					$scope.allNetworks[i].signal = String(Math.abs(parseInt($scope.allNetworks[i].signal)) * -1) + " dBm";
+					$scope.allNetworks[i].signal = String(Math.abs(parseInt($scope.allNetworks[i].signal)) * -1);
 
 					if (parseInt($scope.gainLow) <  parseInt($scope.allNetworks[i].signal)) {
 						$scope.gainLow = $scope.allNetworks[i].signal;

@@ -83,6 +83,16 @@ module.exports = function(app,io) {
 		    	   	console.log("Recieved a network report from node: " + device.name + " with " + nets.length + " networks!");
 		    	   	
 		    	});
+
+				Alert.find({}, function(err, users) {
+					var allUsers = [];
+
+					users.forEach(function(alert) {
+
+		   			});
+
+		   			res.send({ reportStatus: 'accepted' });
+				});
 		    }
 		});
 	});

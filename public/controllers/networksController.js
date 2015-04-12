@@ -1,6 +1,7 @@
 wizer.controller('networksController',['$scope', '$location', '$timeout', '$modal', '$http', function($scope, $location, $timeout, $modal, $http) {
 	$scope.allNetworks = [];
 	$scope.wizardItems = {};
+  $scope.badNetworks = [];
 
 
 	$scope.pullNetworks = function () {
@@ -24,9 +25,11 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
             $scope.allNetworks[i].std = "2.4";
           }else{
             $scope.allNetworks[i].std = "5.4";
-
+            $scope.badNetworks 
           }
+          $scope.badNetworks[$scope.allNetworks[i].channel] = $scope.allNetworks[i].signal;
 				}
+        console.log($scope.badNetworks);
 			}
 		});
 

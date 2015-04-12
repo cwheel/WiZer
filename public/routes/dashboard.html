@@ -2,6 +2,7 @@
     <div class="modal-header">
         <h3 class="modal-title">New Alert</h3>
     </div>
+
     <div class="modal-body" style="margin-top:10px;">
     	<br> 
     	<select style="width: 100%; height: 30px;" ng-model="add.trigger">
@@ -70,7 +71,7 @@
 					      <tr ng-repeat="network in alerts | filter:search | filter:freq | orderBy:predicate:reverse" style="font-size: 10px">
 					        <td>{{ network.SSID }}</td>
 					        <td>{{ network.trigger }}</td>
-					        <td>{{ network.gain }}</td>
+					        <td>{{ network.gain }} dBm</td>
 					    </tr>
 					</tbody>
 				</table>
