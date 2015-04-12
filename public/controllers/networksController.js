@@ -20,6 +20,12 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
 					} else if ($scope.allNetworks[i].cypher == ""){
             $scope.allNetworks[i].cypher = "None";
           }
+          if ($scope.allNetworks[i].channel > 12){
+            $scope.allNetworks[i].std = "2.4";
+          }else{
+            $scope.allNetworks[i].std = "5.4";
+
+          }
 				}
 			}
 		});

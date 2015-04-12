@@ -164,7 +164,7 @@ module.exports = function(app,io) {
 
 	//Delete an alert
 	app.post('/alert/delete', requireAuth, function(req, res) {
-		Alert.remove({req.body}, function (err, device) {
+		Alert.remove(req.body, function (err, device) {
 			res.send({ alert: 'accepted' });
 		});		
 	});
