@@ -1,5 +1,6 @@
 var Passport = require('passport');
 var Report = require('./models/report');
+var Report = require('./models/recentreport');
 var Device = require('./models/device');
 
 module.exports = function(app) {
@@ -48,9 +49,15 @@ module.exports = function(app) {
 	//Handle incoming node data
 	app.post('/node/report', function(req, res) {
 		var nets = JSON.parse(req.body.networks);
+
+		RecentReport.remove({}, function (err) {});	
+
 		for (var i = 0; i < nets.length; i++) {
 			var newReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, time : nets[i].time, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
 			newReport.save();
+
+			var newrReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
+			newrReport.save();
 		}
 
 		console.log("Recieved a network report from node: " + req.body.nodeName + " with " + nets.length + " networks!");
@@ -63,6 +70,19 @@ module.exports = function(app) {
 		} else {
 			res.send({ reportStatus: 'denied' });	
 		}*/
+	});
+
+	//Show all recent reports
+	app.get('/node/recentReports', requireAuth, function(req, res) {
+		RecentReports.find({}, function(err, reports) {
+			var allReports = [];
+
+			reports.forEach(function(report) {
+   				allReports.push(report);
+   			});
+
+			res.send(allReports);
+		});
 	});
 
 	//Register a device
