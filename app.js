@@ -12,7 +12,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var RecentReport = require('./models/recentreport');
 
-mongoose.connect('mongodb://localhost/wizen');
+var options = {
+  user: '4d980289-5340-4dd1-9837-895cbed44ac8',
+  pass: 'd3855fae-8af4-4165-b156-ac51582026cf'
+}
+
+mongoose.connect('mongodb://192.155.243.54/wizen', options);
 RecentReport.remove({}, function (err) {})
 
 app.use(bodyParser.urlencoded({

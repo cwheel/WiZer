@@ -85,10 +85,22 @@ module.exports = function(app,io) {
 		    	});
 
 				Alert.find({}, function(err, users) {
-					var allUsers = [];
-
 					users.forEach(function(alert) {
+						for (net in nets) {
+							if (net.SSID == alert.SSID) {
+								if (alert.trigger == "0") {
 
+								} else if (alert.trigger == "1") {
+									if (Math.abs(parseInt(net.signal)) < Math.abs(parseInt(alert.gain))) {
+
+									}
+								} else if (alert.trigger == "2") {
+									if (Math.abs(parseInt(net.signal)) > Math.abs(parseInt(alert.gain))) {
+										
+									}
+								}
+							}
+						}
 		   			});
 
 		   			res.send({ reportStatus: 'accepted' });
