@@ -28,7 +28,7 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
           }
           if($scope.badNetworks[$scope.allNetworks[i].channel] == undefined){
             $scope.badNetworks[$scope.allNetworks[i].channel] = $scope.allNetworks[i].signal;
-          } else if ($scope.allNetworks[i].channel > $scope.allNetworks[i].signal){
+          } else if ($scope.allNetworks[i].channel < $scope.allNetworks[i].signal){
             $scope.badNetworks[$scope.allNetworks[i].channel] = $scope.allNetworks[i].signal;
           }
 				}
