@@ -34,3 +34,16 @@ wizer.controller('mainController', ['$rootScope', '$scope', '$timeout', '$locati
         }, 100);
     });
 }]);
+wizer.directive('fullViewport', function($timeout) {
+    return {
+        link: function(scope, element, attr) {
+            $timeout(function() {
+                if (attr.fullViewport == "true"){
+                    $("page-wrapper").css("padding-left","0px");
+                }else {
+                    $(".row.header").css("padding-left","");
+                }
+            }, 10);
+        }
+    };
+});
