@@ -5,6 +5,15 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 	$scope.gainHigh = "";
 	$scope.nodes = "";
 	$scope.nets = "";
+	$scope.alerts = [];
+
+  	$http({
+		 	method  : 'GET',
+			url     : '/alert/all',
+	 })
+  	.success(function(resp) {
+  		$scope.alerts = angular.fromJson(resp);
+  	})
 
 	$scope.add = function(size) {
 		var modalInstance = $modal.open({
