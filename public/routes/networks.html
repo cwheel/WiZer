@@ -1,13 +1,11 @@
 <div>
 	<script type="text/ng-template" id="networkWizardPageOne.html">
         <div class="modal-header">
-            <h3 class="modal-title">Analyze Networks</h3>
+            <h3 class="modal-title">Analyze Airspace</h3>
+            <h4 class="modal-title">Best Channels</h2>
         </div>
         <div class="modal-body" style="margin-top:10px;">
-			<div class="form-group-material-blue form-group">
-		      	<input class="form-control floating-label w-text" id="user" placeholder="Name" ng-model="name" material-input>
-	   		</div>
-
+        	<h5>2.4 GHz: {{best2g}}</h5>
 	   		<div>
 		 		API Key: 
 	   		</div>
@@ -15,24 +13,6 @@
         <div class="modal-footer">
         	<button class="btn btn-warning" ng-click="cancel()" style="margin-bottom: 20px">Cancel</button>
             <button class="btn btn-primary" ng-click="next()" style="margin-bottom: 20px">Next</button>
-        </div>
-    </script>
-    <script type="text/ng-template" id="networkWizardPageTwo.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Wifi Wizard 2</h3>
-        </div>
-        <div class="modal-body" style="margin-top:10px;">
-			<div class="form-group-material-blue form-group">
-		      	<input class="form-control floating-label w-text" id="user" placeholder="Name" ng-model="name" material-input>
-	   		</div>
-
-	   		<div>
-		 		API Key: 
-	   		</div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="next()">Next</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </script>
 	<div class="row">
@@ -45,8 +25,8 @@
 			      			<input class="form-control form-group-material-indigo floating-label" id="search" placeholder="Search" ng-model="search" material-input>
 			      		</div>
 			      		<div class="form-group-material-indigo form-group" style="float: right" ng-init="freq=4">
-			      			<span><input type="radio" name="type" ng-model="freq" value="2.4" aria-label="...">&nbsp;&nbsp;2.4 GHZ&nbsp;&nbsp;</span>
-			      			<span><input type="radio" name="type" ng-model="freq" value="5.4" aria-label="...">&nbsp;&nbsp;5 GHZ&nbsp;&nbsp;</span>
+			      			<span><input type="radio" name="type" ng-model="freq" value="true" aria-label="...">&nbsp;&nbsp;2.4 GHZ&nbsp;&nbsp;</span>
+			      			<span><input type="radio" name="type" ng-model="freq" value="false" aria-label="...">&nbsp;&nbsp;5 GHZ&nbsp;&nbsp;</span>
 			      			<span><input type="radio" name="type" ng-model="freq" value="4" checked="checked" aria-label="...">&nbsp;&nbsp;All&nbsp;&nbsp;</span>
 			      		</div>
 	   				</div>
@@ -62,6 +42,7 @@
 					    </thead>
 					    <tbody>
 					      <tr ng-repeat="network in allNetworks | filter:search | orderBy:predicate:reverse" style="font-size: 10px">
+					      	<div ng-if="freq == network.std2 || freq == 4">
 					        <td>{{ network.SSID }}</td>
 					        <td>{{ network.BSSID }}</td>
 					        <td>{{ network.signal }}</td>
