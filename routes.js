@@ -2,6 +2,7 @@ var Passport = require('passport');
 var Report = require('./models/report');
 var Report = require('./models/recentreport');
 var Device = require('./models/device');
+var User = require('./models/user');
 var Crypto = require('crypto');
 var shasum = Crypto.createHash('sha1');
 
@@ -120,6 +121,17 @@ module.exports = function(app) {
 	app.get('/manage/genKey', requireAuth, function(req, res){
 		res.send({ 'key' : Crypto.randomBytes(16).toString('hex')});
    	});
+   	app.get('/node/all', requireAuth, function(req, res) {
+		Device.find({}, function(err, users) {
+			var devices = [];
+
+			users.forEach(function(user) {
+   				devices.push(user);
+   			});
+
+			res.send(devices);
+		});
+	});
 
 	app.get('*', function(req, res){
 		res.redirect('/');

@@ -1,8 +1,23 @@
 wizer.controller('manageController',['$scope', '$location', '$timeout', '$rootScope', '$http', '$modal', '$log', function($scope, $location, $timeout, $rootScope, $http, $modal, $log) {
-  $scope.nodes = ['']
+  $scope.nodes = [];
+  $scope.users = [];
   $scope.items = ['item1', 'item2', 'item3'];
 
   $scope.key = "";
+   $http({
+		 	method  : 'GET',
+			url     : '/user/all',
+  })
+  .success(function(resp){ 
+  	$scope.users = angular.fromJson(resp);
+  });
+  $http({
+		 	method  : 'GET',
+			url     : '/node/all',
+  })
+  .success(function(resp){ 
+  	$scope.nodes = angular.fromJson(resp);
+  });
   $scope.new = function (size) {
   	$http({
 		 	method  : 'GET',
