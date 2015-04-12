@@ -28,6 +28,8 @@ module.exports = function(app,io) {
 			res.send({ loginStatus: 'invalid' });	
 		}
 	});
+
+	//Logout
 	app.get('/logout', requireAuth, function(req, res){
 		req.logout();
 		res.redirect("/");
@@ -113,10 +115,19 @@ module.exports = function(app,io) {
 		});		
 	});
 
+	//Count devices
+	app.get('/node/count', requireAuth, function(req, res) {
+		Device.count({}, function(err, count) {
+			res.send({count : count});
+		});		
+	});
+
 	//Generate a key
 	app.get('/manage/genKey', requireAuth, function(req, res){
 		res.send({ 'key' : Crypto.randomBytes(16).toString('hex')});
    	});
+
+   	//List all devices
    	app.get('/node/all', requireAuth, function(req, res) {
 		Device.find({}, function(err, users) {
 			var devices = [];

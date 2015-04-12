@@ -10,8 +10,11 @@ var Passport = require('passport');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var RecentReport = require('./models/recentreport');
 
 mongoose.connect('mongodb://localhost/wizen');
+RecentReport.remove({}, function (err) {})
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
