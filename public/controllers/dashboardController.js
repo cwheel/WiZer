@@ -21,7 +21,6 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
   		modalInstance.result.then(function (newNode) {
   			
   		}, function () {
-  		  $log.info('Modal dismissed at: ' + new Date());
   		});
 	}
 
@@ -65,12 +64,19 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 	$scope.refresh();
 }]);
 
-wizer.controller('alertController', function ($scope, $modalInstance, $modal, red) {
-
-  	$scope.items = red;
+wizer.controller('alertController', function ($scope, $modalInstance, $modal, $http) {
+	$scope.add = {SSID : "", trigger : "0", gain : ""};
 
   	$scope.ok = function () {
-  		console.log("sdfsdsf");
+  		$http({
+  		 	method  : 'POST',
+  			url     : '/alert/register',
+  			data    : $.param($scope.add),
+  			headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+  		})
+  		.success(function(resp) {
+  			$modalInstance.dismiss('cancel');
+  		});
 	};
 
   	$scope.cancel = function () {

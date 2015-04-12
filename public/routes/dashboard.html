@@ -3,18 +3,18 @@
         <h3 class="modal-title">New Alert</h3>
     </div>
     <div class="modal-body" style="margin-top:10px;">
-    	<br>
-    	<select style="width: 100%; height: 30px;">
+    	<br> 
+    	<select style="width: 100%; height: 30px;" ng-model="add.trigger">
    		  <option value="0">When SSID appears</option>
    		  <option value="1">When the network gain is greater than</option>
    		  <option value="2">When the network gain is less than</option>
    		</select>
    		<br><br>
-		<div class="form-group-material-indego form-group">
-	      	<input class="form-control floating-label w-text" id="user" placeholder="SSID" ng-model="name" material-input>
+		<div class="form-group-material-indego form-group" model>
+	      	<input class="form-control floating-label w-text" id="user" placeholder="SSID" ng-model="add.SSID" material-input>
    		</div>
    		<div class="form-group-material-indego form-group">
-	      	<input class="form-control floating-label w-text" id="user" placeholder="Gain (Leave blank for any)" ng-model="name" material-input>
+	      	<input class="form-control floating-label w-text" id="user" placeholder="Gain (Leave blank for any)" ng-model="add.gain" material-input>
    		</div>
     </div>
     <div class="modal-footer">

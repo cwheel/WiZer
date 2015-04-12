@@ -82,7 +82,6 @@ module.exports = function(app,io) {
 
 		    	   	console.log("Recieved a network report from node: " + device.name + " with " + nets.length + " networks!");
 		    	   	
-		    	   	res.send({ reportStatus: 'accepted' });
 		    	});
 		    }
 		});
