@@ -2,23 +2,12 @@ wizer.controller('mainController', ['$rootScope', '$scope', '$timeout', '$locati
     var mobileView = 992;
 	$scope.showTopbar = false;
 	$scope.userMenu = false;
+    $scope.toggle = false;
+    $cookieStore.put('toggle', $scope.toggle);
 
     $scope.getWidth = function() {
         return window.innerWidth;
     };
-
-    $scope.$watch($scope.getWidth, function(newValue, oldValue) {
-        if (newValue >= mobileView) {
-            if (angular.isDefined($cookieStore.get('toggle'))) {
-                $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
-            } else {
-                $scope.toggle = true;
-            }
-        } else {
-            $scope.toggle = false;
-        }
-
-    });
 
     $scope.toggleSidebar = function() {
         $scope.toggle = !$scope.toggle;
@@ -31,6 +20,8 @@ wizer.controller('mainController', ['$rootScope', '$scope', '$timeout', '$locati
     $rootScope.$on('loginCompleted', function(event, args) {
         $timeout(function() {
             $scope.$apply('showTopbar = true');
+            $scope.toggle = true;
+            $cookieStore.put('toggle', $scope.toggle);
         }, 100);
     });
 }]);
