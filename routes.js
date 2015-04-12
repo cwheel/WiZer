@@ -2,6 +2,8 @@ var Passport = require('passport');
 var Report = require('./models/report');
 var RecentReport = require('./models/recentreport');
 var Device = require('./models/device');
+var Crypto = require('crypto');
+var shasum = Crypto.createHash('sha1');
 
 module.exports = function(app,io) {
 	var recentReports = 0;
@@ -110,6 +112,28 @@ module.exports = function(app,io) {
 		});		
 	});
 
+<<<<<<< HEAD
+=======
+	//Ensure that the key from the device is valid
+	function keyIsValid(deviceKey) {
+		if (deviceKey == null) {
+			return false;
+		}
+
+		Device.findOne({ key : deviceKey }, function (err, device) {
+		    if (!device) {
+		    	return false;
+		    } else {
+		    	return true;
+		    }
+		});
+	}
+
+	app.get('/manage/genKey', requireAuth, function(req, res){
+		res.send({ 'key' : Crypto.randomBytes(16).toString('hex')});
+   	});
+
+>>>>>>> 692e7f81abe622c5221e27b9c5830cc4512118ea
 	app.get('*', function(req, res){
 		res.redirect('/');
 	});

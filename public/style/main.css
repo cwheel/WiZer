@@ -18,4 +18,10 @@ body {
   background-image: url(../images/bkg.png);
 }
 
+.noselect {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /*# sourceMappingURL=main.css.map */
