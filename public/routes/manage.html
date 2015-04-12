@@ -1,9 +1,47 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="panel panel-material-light-blue" edgeless-panel>
-			<div class="panel-heading">
-			</div>
-			<div class="panel-body">
+<div>
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">New Node</h3>
+        </div>
+        <div class="modal-body" style="margin-top:10px;">
+			<div class="form-group-material-blue form-group">
+		      	<input class="form-control floating-label w-text" id="user" placeholder="Name" ng-model="name" material-input>
+	   		</div>
+
+	   		<div>
+		 		API Key: {{ key }}
+	   		</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-material-light-blue" edgeless-panel>
+				<div class="panel-heading">
+					Node's
+					<div class="pull-right" style="font-size:16px" ng-click="new()">+</div>
+				</div>
+				<div class="panel-body">
+				<table class="table table-hover table-condensed">
+				    <thead>
+				      <tr>
+				        <th>Name</th>
+				        <th>Key</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr ng-repeat="node in nodes">
+				        <td>John</td>
+				        <td>Doe</td>
+				        <td>john@example.com</td>
+				      </tr>
+				    </tbody>
+				  </table>
+				</div>
 			</div>
 		</div>
 	</div>

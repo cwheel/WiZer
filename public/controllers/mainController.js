@@ -20,9 +20,11 @@ wizer.controller('mainController', ['$rootScope', '$scope', '$timeout', '$locati
     $rootScope.$on('loginCompleted', function(event, args) {
         $timeout(function() {
             $scope.$apply('showTopbar = true');
+        }, 100);
+        $timeout(function(){
             $scope.toggle = true;
             $cookieStore.put('toggle', $scope.toggle);
-        }, 100);
+        }, 200);
     });
 }]);
 wizer.directive('fullViewport', function($timeout) {
