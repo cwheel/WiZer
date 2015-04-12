@@ -43,18 +43,22 @@ module.exports = function(app) {
 
 	//Handle incoming node data
 	app.post('/node/report', function(req, res) {
-		if (keyIsValid(req.body.key)) {
-			var report = req.body;
-			delete report.key;
-			delete report.deviceName;
-
-			var newReport = new Report(report);
+		var nets = JSON.parse(req.body.networks);
+		for (var i = 0; i < nets.length; i++) {
+			var newReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, time : nets[i].time, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
 			newReport.save();
+		}
+
+		console.log("Recieved a network report from node: " + req.body.nodeName + " with " + nets.length + " networks!");
+
+		res.send({ reportStatus: 'accepted' });
+		/*if (keyIsValid(req.body.key)) {
+			
 
 			res.send({ reportStatus: 'accepted' });
 		} else {
 			res.send({ reportStatus: 'denied' });	
-		}
+		}*/
 	});
 
 	//Register a device
@@ -67,7 +71,7 @@ module.exports = function(app) {
 
 	//Delete a device
 	app.post('/node/delete', requireAuth, function(req, res) {
-		Device.delete({key : req.body.key}, function (err, device) {
+		Device.remove({key : req.body.key}, function (err, device) {
 			res.send({ reportStatus: 'accepted' });
 		});		
 	});
