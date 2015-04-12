@@ -64,7 +64,7 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
   		size: 'lg',
   		resolve: {
   		    red: function () {
-  		      return $scope.wizardItems;
+  		      return $scope.best2g;
   		    }
   		  }
   		});
@@ -77,7 +77,7 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
 }]);
 wizer.controller('networkWizardPageOne', function ($scope, $modalInstance, $modal, red) {
 
-  $scope.items = red;
+  $scope.best2g = red;
 
   $scope.next = function () {
   	var modalInstance = $modal.open({
@@ -91,7 +91,7 @@ wizer.controller('networkWizardPageOne', function ($scope, $modalInstance, $moda
   		  }
   		});
 
-    	$modalInstance.close($scope.wizardItems);
+    	$modalInstance.close($scope.best2g);
   		modalInstance.result.then(function (newNode) {
   		}, function () {
   		  $log.info('Modal dismissed at: ' + new Date());

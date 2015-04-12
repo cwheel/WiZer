@@ -42,12 +42,13 @@
 					    </thead>
 					    <tbody>
 					      <tr ng-repeat="network in allNetworks | filter:search | orderBy:predicate:reverse" style="font-size: 10px">
-					      	<div ng-if="freq == network.std2 || freq == 4">
-					        <td>{{ network.SSID }}</td>
-					        <td>{{ network.BSSID }}</td>
-					        <td>{{ network.signal }}</td>
-					        <td>{{ network.channel }}</td>
-					        <td>{{ network.cypher }}</td>
+					      	<div ng-show="freq == network.std2 || freq == 4">
+						        <td>{{ network.SSID }}</td>
+						        <td>{{ network.BSSID }}</td>
+						        <td>{{ network.signal }}</td>
+						        <td>{{ network.channel }}</td>
+						        <td>{{ network.cypher }}</td>
+						    </div>
 					      </tr>
 					    </tbody>
 					</table>
