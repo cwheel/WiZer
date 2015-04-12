@@ -82,7 +82,6 @@ module.exports = function(app,io) {
 
 		    	   	console.log("Recieved a network report from node: " + device.name + " with " + nets.length + " networks!");
 		    	   	
-		    	   	res.send({ reportStatus: 'accepted' });
 		    	});
 		    }
 		});
@@ -164,7 +163,7 @@ module.exports = function(app,io) {
 
 	//Delete an alert
 	app.post('/alert/delete', requireAuth, function(req, res) {
-		Alert.remove({req.body}, function (err, device) {
+		Alert.remove(req.body, function (err, device) {
 			res.send({ alert: 'accepted' });
 		});		
 	});
