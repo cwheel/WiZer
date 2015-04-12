@@ -61,7 +61,7 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr ng-repeat="network in allNetworks | filter:search | filter:{'std': freq}:true | orderBy:predicate:reverse" style="font-size: 10px">
+					      <tr ng-repeat="network in allNetworks | filter:search | orderBy:predicate:reverse" style="font-size: 10px">
 					        <td>{{ network.SSID }}</td>
 					        <td>{{ network.BSSID }}</td>
 					        <td>{{ network.signal }}</td>
