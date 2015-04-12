@@ -22,6 +22,8 @@ wizer.controller('loginController',['$scope', '$location', '$timeout', '$rootSco
 		.success(function(resp) {
 			if (angular.fromJson(resp).loginStatus == 'success') {
 				$location.path('/dashboard');
+				$("#loginBack").animate({opacity: 0}, 400);
+				$scope.$emit('loginCompleted', null);
 			} else {
 				$scope.loginStatus = "Login Failed!";
 

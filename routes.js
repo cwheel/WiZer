@@ -22,6 +22,10 @@ module.exports = function(app) {
 			res.send({ loginStatus: 'invalid' });	
 		}
 	});
+	app.get('/logout', requireAuth, function(req, res){
+		req.logout();
+		res.redirect("/");
+   	});
 
 	//Return the current users info
 	app.get('/user/currentInfo', requireAuth, function(req, res) {

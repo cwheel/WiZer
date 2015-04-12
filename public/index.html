@@ -1,69 +1,133 @@
-<!DOCTYPE html>
 <html ng-app="wizer">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- Pace -->
-    <script src="bower_components/pace/pace.js"></script>
-    <link rel="stylesheet" href="bower_components/pace/pace.css">
-    
-    <!-- Angular -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+        <!-- Pace -->
+        <script src="bower_components/pace/pace.js"></script>
+        <link rel="stylesheet" href="bower_components/pace/pace.css">
+        
+        <!-- Angular -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
 
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,300' rel='stylesheet' type='text/css'>
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,300' rel='stylesheet' type='text/css'>
 
-    <!-- ChartJS -->
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <script src="bower_components/Chart.js/src/Chart.Bar.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+        <!-- ChartJS -->
+        <script src="bower_components/Chart.js/Chart.min.js"></script>
+        <script src="bower_components/Chart.js/src/Chart.Bar.js"></script>
+        <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+        <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <!-- Bootstrap -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
-    <!-- Bootstrap Theme Material Design -->
-    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/material.css">
-    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css">
-    <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+        <!-- Bootstrap Theme Material Design -->
+        <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/material.css">
+        <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css">
+        <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
 
-    <!-- Spinkit -->
-    <link rel="stylesheet" href="bower_components/spinkit/css/spinkit.css"></link>
-    <link rel="stylesheet" href="bower_components/spinkit/css/spinners/7-three-bounce.css"></link>
+        <!-- Spinkit -->
+        <link rel="stylesheet" href="bower_components/spinkit/css/spinkit.css"></link>
+        <link rel="stylesheet" href="bower_components/spinkit/css/spinners/7-three-bounce.css"></link>
 
-    <!-- Bootstrap Template RDash -->
-    <link rel="stylesheet" href="bower_components/rdash-ui/dist/css/rdash.css"></link>
+        <!-- Bootstrap Template RDash -->
+        <link rel="stylesheet" href="bower_components/rdash-ui/dist/css/rdash.css"></link>
 
-    <!-- ng-Bootstrap-Material -->
-    <script src="bower_components/ng-bootstrap-material/ngBootstrapMaterial.js"></script>
+        <!-- ng-Bootstrap-Material -->
+        <script src="bower_components/ng-bootstrap-material/ngBootstrapMaterial.js"></script>
+        
+        <!-- Moment -->
+        <script src="bower_components/moment/min/moment.min.js"></script>
 
-    <!-- NgApp -->
-    <script src="wizer.js"></script>
+        <!-- Global CSS -->
+        <link rel="stylesheet" type="text/css" href="style/main.css">
 
-    <!-- Controllers -->
-    <script src="controllers/loginController.js"></script>
+        <!-- Page Controllers -->
+        <script src="wizer.js"></script>
+        <script src="controllers/mainController.js"></script>
+        <script src="controllers/loginController.js"></script>
+        <script src="controllers/dashboardController.js"></script>
+        <script src="controllers/manageController.js"></script>
+        <script src="controllers/networksController.js"></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style/main.css"></link>
-    
-    <title>Wizer</title>
-    <base href="/">
-  </head>
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicons/favicon-194x194.png" sizes="194x194">
+        <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#37474f">
+        <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+        <meta name="theme-color" content="#ffffff">
 
-  <body>
-    <div class="col-xs-12 view" ng-view=""></div>
-  </body>
+        <title>Sprox</title>
+        <base href="/">
+    </head>
+
+  <div id="loginBack"></div>
+  <body ng-controller="mainController">
+ <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div ng-if="showTopbar" id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a ng-click="toggleSidebar()">
+            Dashboard
+            <i class="menu-icon fa fa-list" style="color: #FFF"></i>
+          </a>
+        </li>
+        <li class="sidebar-list">
+          <a href="/dashboard">Dashboard<span class="menu-icon fa fa-tachometer"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="/networks">Networks<span class="menu-icon fa fa-wifi"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="/manage">Manage<span class="menu-icon fa fa-cogs"></span></a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="col-xs-12">
+          <a href="/logout" target="_blank">
+            Logout
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+
+        <!-- Main Content -->
+        <div full-viewport="{{ fullscreen }}" class="{{ pageClass }} col-xs-12 view page" style="margin-top:20px" ng-view=""></div>
+
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->
+</body>
 </html>
