@@ -5,7 +5,7 @@
             <h4 class="modal-title">Best Channels</h2>
         </div>
         <div class="modal-body" style="margin-top:10px;">
-        	<h5>2.4 GHz: {{best2g}}</h5>
+        	<h5>2.4 GHz: {{best2ga}}</h5>
 	   		<div>
 		 		API Key: 
 	   		</div>
@@ -38,6 +38,7 @@
 					        <th style="cursor: pointer;" ng-click="predicate = 'signal'; reverse=!reverse">Gain <span style="font-size:12px">▼</span></th>
 					        <th>Channel</th>
 					        <th style="cursor: pointer;" ng-click="predicate = 'cypher'; reverse=!reverse" >Cipher <span style="font-size:12px">▼</span></th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'device'; reverse=!reverse" >Device <span style="font-size:12px">▼</span></th>
 					      </tr>
 					    </thead>
 					    <tbody>
@@ -48,6 +49,7 @@
 						        <td>{{ network.signal }}</td>
 						        <td>{{ network.channel }}</td>
 						        <td>{{ network.cypher }}</td>
+						        <td>{{ network.device }}</td>
 						    </div>
 					      </tr>
 					    </tbody>
