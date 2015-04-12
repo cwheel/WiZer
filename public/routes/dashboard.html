@@ -1,3 +1,28 @@
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">New Alert</h3>
+    </div>
+    <div class="modal-body" style="margin-top:10px;">
+    	<br>
+    	<select style="width: 100%; height: 30px;">
+   		  <option value="0">When SSID appears</option>
+   		  <option value="1">When the network gain is greater than</option>
+   		  <option value="2">When the network gain is less than</option>
+   		</select>
+   		<br><br>
+		<div class="form-group-material-indego form-group">
+	      	<input class="form-control floating-label w-text" id="user" placeholder="SSID" ng-model="name" material-input>
+   		</div>
+   		<div class="form-group-material-indego form-group">
+	      	<input class="form-control floating-label w-text" id="user" placeholder="Gain (Leave blank for any)" ng-model="name" material-input>
+   		</div>
+    </div>
+    <div class="modal-footer">
+   	 	<button class="btn btn-warning" ng-click="cancel()"style="margin-bottom: 20px">Cancel</button>
+        <button class="btn btn-primary" ng-click="ok()" style="margin-bottom: 20px">OK</button>
+    </div>
+</script>
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-material-light-green" edgeless-panel>
@@ -21,6 +46,34 @@
 				<span class="menu-icon fa fa-wifi" style="font-size: 100px; float: left;"></span>
 				<div style="float: left; padding-left: 20px; padding-top: 8px;">{{ nets }} Wireless Networks Scanned</div><br><br>
 				<div style="float: left; padding-left: 20px; font-size: 9px;">{{ gainLow }} dBm at the lowest, {{ gainHigh }} dBm at the highest</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-material-indigo" edgeless-panel>
+			<div class="panel-heading">
+			<i class="fa fa-exclamation-triangle"></i> Network Alerts <div class="pull-right" style="font-size:16px;cursor: pointer;" ng-click="add()"><i class="fa fa-plus"></i></div>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover table-condensed">
+					<thead>
+					    <tr>
+					        <th style="cursor: pointer;" ng-click="predicate = 'SSID'; reverse=!reverse">SSID <span style="font-size:12px">▼</span></th>
+					        <th>Trigger</th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'signal'; reverse=!reverse">Gain <span style="font-size:12px">▼</span></th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr ng-repeat="network in allNetworks | filter:search | filter:freq | orderBy:predicate:reverse" style="font-size: 10px">
+					        <td>{{ network.SSID }}</td>
+					        <td>{{ network.BSSID }}</td>
+					        <td>{{ network.signal }}</td>
+					    </tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

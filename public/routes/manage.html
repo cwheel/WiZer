@@ -3,18 +3,19 @@
         <div class="modal-header">
             <h3 class="modal-title">New Node</h3>
         </div>
+        <br>
         <div class="modal-body" style="margin-top:10px;">
 			<div class="form-group-material-blue form-group">
 		      	<input class="form-control floating-label w-text" id="user" placeholder="Name" ng-model="name" material-input>
 	   		</div>
 
 	   		<div>
-		 		API Key: {{ key }}
+		 		Access Key: {{ key }}
 	   		</div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+       	 	<button class="btn btn-warning" ng-click="cancel()"style="margin-bottom: 20px">Cancel</button>
+            <button class="btn btn-primary" ng-click="ok()" style="margin-bottom: 20px">OK</button>
         </div>
     </script>
 
@@ -55,7 +56,7 @@
 				    <thead>
 				      <tr>
 				        <th class="col-md-4">Name</th>
-				        <th>username</th>
+				        <th>Username</th>
 				      </tr>
 				    </thead>
 				    <tbody>
