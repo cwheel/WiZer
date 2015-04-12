@@ -1,5 +1,7 @@
-wizer.controller('networksController',['$scope', '$location', '$timeout', '$rootScope', '$http', function($scope, $location, $timeout, $rootScope, $http) {
+wizer.controller('networksController',['$scope', '$location', '$timeout', '$modal', '$http', function($scope, $location, $timeout, $modal, $http) {
 	$scope.allNetworks = [];
+	$scope.wizardItems = {};
+
 
 	$scope.pullNetworks = function () {
 		$http({
@@ -30,4 +32,77 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$root
 	};
 
 	$scope.pullNetworks();
+
+	// Models
+  $scope.pageone = function (size) {
+  	var modalInstance = $modal.open({
+  		templateUrl: 'networkWizardPageOne.html',
+  		controller: 'networkWizardPageOne',
+  		size: 'lg',
+  		resolve: {
+  		    red: function () {
+  		      return $scope.wizardItems;
+  		    }
+  		  }
+  		});
+
+  		modalInstance.result.then(function (newNode) {
+  		}, function () {
+  		  $log.info('Modal dismissed at: ' + new Date());
+  		});
+  	};
 }]);
+wizer.controller('networkWizardPageOne', function ($scope, $modalInstance, $modal, red) {
+
+  $scope.items = red;
+
+  $scope.next = function () {
+  	var modalInstance = $modal.open({
+  		templateUrl: 'networkWizardPageTwo.html',
+  		controller: 'networkWizardPageTwo',
+  		size: 'lg',
+  		resolve: {
+  		    red: function () {
+  		      return $scope.wizardItems;
+  		    }
+  		  }
+  		});
+
+    	$modalInstance.close($scope.wizardItems);
+  		modalInstance.result.then(function (newNode) {
+  		}, function () {
+  		  $log.info('Modal dismissed at: ' + new Date());
+  		});
+	};
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+wizer.controller('networkWizardPageTwo', function ($scope, $modalInstance, $modal, red) {
+
+  $scope.items = red;
+
+  $scope.next = function () {
+  	var modalInstance = $modal.open({
+  		templateUrl: 'networkWizardPageTwo.html',
+  		controller: 'networkWizardPageTwo',
+  		size: size,
+  		resolve: {
+  		    red: function () {
+  		      return $scope.wizardItems;
+  		    }
+  		  }
+  		});
+    	$modalInstance.close($scope.wizardItems);
+
+  		modalInstance.result.then(function (newNode) {
+  		}, function () {
+  		  $log.info('Modal dismissed at: ' + new Date());
+  		});
+	};
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
