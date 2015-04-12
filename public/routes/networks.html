@@ -1,7 +1,7 @@
 <div>
 	<script type="text/ng-template" id="networkWizardPageOne.html">
         <div class="modal-header">
-            <h3 class="modal-title">Wifi Wizard</h3>
+            <h3 class="modal-title">Analyze Networks</h3>
         </div>
         <div class="modal-body" style="margin-top:10px;">
 			<div class="form-group-material-blue form-group">
@@ -13,8 +13,8 @@
 	   		</div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="next()">Next</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        	<button class="btn btn-warning" ng-click="cancel()" style="margin-bottom: 20px">Cancel</button>
+            <button class="btn btn-primary" ng-click="next()" style="margin-bottom: 20px">Next</button>
         </div>
     </script>
     <script type="text/ng-template" id="networkWizardPageTwo.html">
@@ -38,20 +38,30 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-material-indigo" edgeless-panel>
-				<div class="panel-heading">Observable Networks <div class="pull-right" style="font-size:16px;cursor: pointer;" ng-click="pageone()">+</div></div>
+				<div class="panel-heading">Observable Networks <div class="pull-right" style="font-size:16px;cursor: pointer;" ng-click="pageone()"><i class="fa fa-filter"></i></div></div>
 				<div class="panel-body">
+					<div class="row">
+						<div class="form-group-material-indigo form-group" style="width:25%; float: left">
+			      			<input class="form-control form-group-material-indigo floating-label" id="search" placeholder="Search" ng-model="search" material-input>
+			      		</div>
+			      		<div class="form-group-material-indigo form-group" style="float: right">
+			      			<span><input type="radio" name="type" ng-model="freq" value="12" aria-label="...">&nbsp;&nbsp;2.4 GHZ&nbsp;&nbsp;</span>
+			      			<span><input type="radio" name="type" ng-model="freq" aria-label="...">&nbsp;&nbsp;5 GHZ&nbsp;&nbsp;</span>
+			      			<span><input type="radio" name="type" ng-model="freq" checked="checked" aria-label="...">&nbsp;&nbsp;All&nbsp;&nbsp;</span>
+			      		</div>
+	   				</div>
 					<table class="table table-hover table-condensed">
 					    <thead>
 					      <tr>
-					        <th>SSID</th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'SSID'; reverse=!reverse">SSID <span style="font-size:12px">▼</span></th>
 					        <th>BSSID</th>
-					        <th>Gain</th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'signal'; reverse=!reverse">Gain <span style="font-size:12px">▼</span></th>
 					        <th>Channel</th>
-					        <th>Cipher</th>
+					        <th style="cursor: pointer;" ng-click="predicate = 'cypher'; reverse=!reverse" >Cipher <span style="font-size:12px">▼</span></th>
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr ng-repeat="network in allNetworks" style="font-size: 10px">
+					      <tr ng-repeat="network in allNetworks | filter:search | filter:freq | orderBy:predicate:reverse" style="font-size: 10px">
 					        <td>{{ network.SSID }}</td>
 					        <td>{{ network.BSSID }}</td>
 					        <td>{{ network.signal }}</td>
@@ -59,7 +69,7 @@
 					        <td>{{ network.cypher }}</td>
 					      </tr>
 					    </tbody>
-					  </table>
+					</table>
 				</div>
 			</div>
 		</div>

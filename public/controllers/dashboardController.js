@@ -1,4 +1,4 @@
-wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$rootScope', '$http', function($scope, $location, $timeout, $rootScope, $http) {
+wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$rootScope', '$http', '$modal', function($scope, $location, $timeout, $rootScope, $http, $modal) {
 	$scope.$emit('loginCompleted', null);
 
 	$scope.gainLow = "";
@@ -6,8 +6,26 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 	$scope.nodes = "";
 	$scope.nets = "";
 
+	$scope.add = function(size) {
+		var modalInstance = $modal.open({
+  		  templateUrl: 'myModalContent.html',
+  		  controller: 'alertController',
+  		  size: size,
+  		  resolve: {
+  		    red: function () {
+  		      return $scope.key;
+  		    }
+  		  }
+  		});
+
+  		modalInstance.result.then(function (newNode) {
+  			
+  		}, function () {
+  		  $log.info('Modal dismissed at: ' + new Date());
+  		});
+	}
+
 	$scope.refresh = function () {
-		console.log("fdsfs");
 		$http({
 		    method : 'GET',
 		    url : '/node/recentReports'
@@ -46,3 +64,16 @@ wizer.controller('dashboardController',['$scope', '$location', '$timeout', '$roo
 
 	$scope.refresh();
 }]);
+
+wizer.controller('alertController', function ($scope, $modalInstance, $modal, red) {
+
+  	$scope.items = red;
+
+  	$scope.ok = function () {
+  		console.log("sdfsdsf");
+	};
+
+  	$scope.cancel = function () {
+    	$modalInstance.dismiss('cancel');
+  	};
+});

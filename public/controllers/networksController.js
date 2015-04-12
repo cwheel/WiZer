@@ -17,7 +17,9 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
 
 					if ($scope.allNetworks[i].cypher == "CCMP") {
 						$scope.allNetworks[i].cypher = "AES";
-					}
+					} else if ($scope.allNetworks[i].cypher == ""){
+            $scope.allNetworks[i].cypher = "None";
+          }
 				}
 			}
 		});

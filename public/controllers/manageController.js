@@ -28,12 +28,7 @@ wizer.controller('manageController',['$scope', '$location', '$timeout', '$rootSc
   		var modalInstance = $modal.open({
   		  templateUrl: 'myModalContent.html',
   		  controller: 'ModalInstanceCtrl',
-  		  size: size,
-  		  resolve: {
-  		    red: function () {
-  		      return $scope.key;
-  		    }
-  		  }
+  		  size: size
   		});
 
   		modalInstance.result.then(function (newNode) {

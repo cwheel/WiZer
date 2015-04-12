@@ -2,6 +2,7 @@ var Passport = require('passport');
 var Report = require('./models/report');
 var RecentReport = require('./models/recentreport');
 var Device = require('./models/device');
+var Alert = require('./models/alert');
 var User = require('./models/user');
 var Crypto = require('crypto');
 var shasum = Crypto.createHash('sha1');
@@ -138,6 +139,34 @@ module.exports = function(app,io) {
 
 			res.send(devices);
 		});
+	});
+
+	//List all alerts
+   	app.get('/alert/all', requireAuth, function(req, res) {
+		Alert.find({}, function(err, users) {
+			var devices = [];
+
+			users.forEach(function(user) {
+   				devices.push(user);
+   			});
+
+			res.send(devices);
+		});
+	});
+
+	//Register an alert
+	app.post('/alert/register', requireAuth, function(req, res) {
+		var newDevice = new Alert(req.body);
+		newDevice.save();
+
+		res.send({ alert: 'accepted' });
+	});
+
+	//Delete an alert
+	app.post('/alert/delete', requireAuth, function(req, res) {
+		Alert.remove({req.body}, function (err, device) {
+			res.send({ alert: 'accepted' });
+		});		
 	});
 
 	app.get('*', function(req, res){
