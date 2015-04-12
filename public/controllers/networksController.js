@@ -22,15 +22,24 @@ wizer.controller('networksController',['$scope', '$location', '$timeout', '$moda
             $scope.allNetworks[i].cypher = "None";
           }
           if ($scope.allNetworks[i].channel > 12){
-            $scope.allNetworks[i].std = "2.4";
-          }else{
-            $scope.allNetworks[i].std = "5.4";
+            $scope.allNetworks[i].std2 = true;
+          } else {
+            $scope.allNetworks[i].std2 = false;
           }
           if($scope.badNetworks[$scope.allNetworks[i].channel] == undefined){
             $scope.badNetworks[$scope.allNetworks[i].channel] = $scope.allNetworks[i].signal;
           } else if ($scope.allNetworks[i].channel < $scope.allNetworks[i].signal){
             $scope.badNetworks[$scope.allNetworks[i].channel] = $scope.allNetworks[i].signal;
           }
+
+          $scope.best2g = $scope.badNetworks[1];
+          if ($scope.best2g > $scope.badNetworks[6]){
+            $scope.best2g = $scope.badNetworks[6];
+          }
+          if ($scope.best2g > $scope.badNetworks[11]){
+            $scope.best2g = $scope.badNetworks[11];
+          }
+
 				}
         console.log($scope.badNetworks);
 			}
