@@ -11,12 +11,14 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var RecentReport = require('./models/recentreport');
+var Report = require('./models/report');
 var nodemailer = require('nodemailer');
 
 var Alert = require('./models/alert');
 
 mongoose.connect("mongodb://4d980289-5340-4dd1-9837-895cbed44ac8:d3855fae-8af4-4165-b156-ac51582026cf@192.155.243.54:10035/db");
 RecentReport.remove({}, function (err) {});
+Report.remove({}, function (err) {});
 
 var transporter = nodemailer.createTransport({
     service: 'Gmail',

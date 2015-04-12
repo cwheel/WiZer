@@ -73,10 +73,10 @@ module.exports = function(app,mail) {
 		    	   	recentReports++;
 
 		    	   	for (var i = 0; i < nets.length; i++) {
-		    	   		var newReport = new Report({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, time : nets[i].time, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
+		    	   		var newReport = new Report({BSSID : nets[i].BSSID, device : device.name, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, time : nets[i].time, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
 		    	   		newReport.save();
 
-		    	   		var newrReport = new RecentReport({BSSID : nets[i].BSSID, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
+		    	   		var newrReport = new RecentReport({BSSID : nets[i].BSSID, device : device.name, SSID : nets[i].SSID, frequency : nets[i].frequency, channel : nets[i].channel, quality : nets[i].quality, signal : nets[i].signal, encrypted : nets[i].encrypted, securityType : nets[i].securityType, cypher : nets[i].cypher});
 		    	   		newrReport.save();
 		    	   	}
 
