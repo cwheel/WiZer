@@ -7,7 +7,7 @@ var User = require('./models/user');
 var Crypto = require('crypto');
 var shasum = Crypto.createHash('sha1');
 
-module.exports = function(app,io) {
+module.exports = function(app,mail) {
 	var recentReports = 0;
 
 	function requireAuth(req, res, next) {
@@ -89,14 +89,56 @@ module.exports = function(app,io) {
 						for (net in nets) {
 							if (net.SSID == alert.SSID) {
 								if (alert.trigger == "0") {
-									Alert.update({_id : alert._id},{$set:{'triggered':true}});
+									var mailOptions = {
+									    from: 'noreplywizer@gmail.com',
+									    to: req.user.email,
+									    subject: 'SSID Appeared!', 
+									    text: 'Hello there ' + req.user.name + '! The SSID ' + alert.ssid + ' appeared today!',
+									    html: 'Hello there ' + req.user.name + '! The SSID ' + alert.ssid + ' appeared today!'
+									};
+
+									mail.sendMail(mailOptions, function(error, info){
+									    if(error){
+									        console.log(error);
+									    }else{
+									        console.log('Alert sent: ' + info.response);
+									    }
+									});
 								} else if (alert.trigger == "1") {
 									if (Math.abs(parseInt(net.signal)) < Math.abs(parseInt(alert.gain))) {
-										Alert.update({_id : alert._id},{$set:{'triggered':true}});
+										var mailOptions = {
+										    from: 'noreplywizer@gmail.com',
+										    to: req.user.email,
+										    subject: "An SSID's gain triggered an alert!", 
+										    text: 'Hello there ' + req.user.name + '! The SSID ' + alert.ssid + ' had a gain over your alert limit.',
+										    html: 'Hello there ' + req.user.name + '! The SSID ' + alert.ssid + ' had a gain over your alert limit.'
+										};
+
+										mail.sendMail(mailOptions, function(error, info){
+										    if(error){
+										        console.log(error);
+										    }else{
+										        console.log('Alert sent: ' + info.response);
+										    }
+										});
 									}
 								} else if (alert.trigger == "2") {
 									if (Math.abs(parseInt(net.signal)) > Math.abs(parseInt(alert.gain))) {
-										Alert.update({_id : alert._id},{$set:{'triggered':true}});
+										var mailOptions = {
+										    from: 'noreplywizer@gmail.com',
+										    to: req.user.email,
+										    subject: "An SSID's gain triggered an alert!", 
+										    text: 'Hello there ' + req.user.name + '! The SSID ' + alert.ssid + ' had a gain under your alert limit.',
+										    html: 'Hello there ' + req.user.name + '! The SSID ' + alert.ssid + ' had a gain under your alert limit.'
+										};
+
+										mail.sendMail(mailOptions, function(error, info){
+										    if(error){
+										        console.log(error);
+										    }else{
+										        console.log('Alert sent: ' + info.response);
+										    }
+										});
 									}
 								}
 							}

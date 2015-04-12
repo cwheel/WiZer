@@ -20,7 +20,8 @@
 		"grunt-shell-spawn": "latest",
 		"passport": "latest",
 		"passport-local" : "latest",
-		"socket.io" : "latest"
+		"socket.io" : "latest",
+		"nodemailer" : "latest"
 	},
 	"repository": {}
 }
